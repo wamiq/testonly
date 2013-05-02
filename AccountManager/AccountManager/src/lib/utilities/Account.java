@@ -51,5 +51,7 @@ public class Account implements IAccount {
 	@SuppressWarnings("unused")
 	private boolean isAccountLocked(){
 		return (true);
+		
+		
 	}
 }
