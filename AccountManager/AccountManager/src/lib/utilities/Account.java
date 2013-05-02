@@ -11,14 +11,7 @@ import lib.interfaces.IAccount;
  */
 public class Account implements IAccount {
 
-	static double balance = 0;
-
-	@Override
-	public void resetAccountBalance() {
-
-		balance = 0;
-
-	}
+	private static double balance = 0;
 
 	@Override
 	public double getBalance() {
@@ -36,11 +29,6 @@ public class Account implements IAccount {
 		balance += amount;
 
 	}
-	
-	@SuppressWarnings("unused")
-	private void postToAudit(){
-		
-	}
 
 	@Override
 	public void debit(double amount) throws IllegalArgumentException {
@@ -50,6 +38,12 @@ public class Account implements IAccount {
 		}
 
 		balance -= amount;
+	}
+
+	@Override
+	public void resetAccountBalance() {
+		balance = 0;
+
 	}
 
 }
