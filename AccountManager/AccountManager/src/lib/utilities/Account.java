@@ -45,5 +45,10 @@ public class Account implements IAccount {
 		balance = 0;
 
 	}
+	
+	@SuppressWarnings("unused")
+	private boolean isAccountLocked(){
+		return (false);
+	}
 
 }
