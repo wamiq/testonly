@@ -16,7 +16,9 @@ public class Account implements IAccount {
 	@Override
 	public double getBalance() {
 
+		//return the balance of the account
 		return balance;
+		
 	}
 
 	@Override
