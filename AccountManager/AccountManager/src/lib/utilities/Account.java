@@ -14,9 +14,9 @@ public class Account implements IAccount {
 	static double balance = 0;
 
 	@Override
-	public void setBalance(double dAmount) {
+	public void resetAccountBalance() {
 
-		balance = dAmount;
+		balance = 0;
 
 	}
 
@@ -35,6 +35,16 @@ public class Account implements IAccount {
 
 		balance += amount;
 
+	}
+
+	@Override
+	public void debit(double amount) throws IllegalArgumentException {
+
+		if (amount == 0 || amount < 0) {
+			throw new IllegalArgumentException(Double.toString(amount));
+		}
+
+		balance -= amount;
 	}
 
 }

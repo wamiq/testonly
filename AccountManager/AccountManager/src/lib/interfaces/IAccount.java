@@ -9,10 +9,13 @@ package lib.interfaces;
  */
 public interface IAccount {
 
-	double getBalance();
+	void resetAccountBalance();
 
-	void setBalance(double dAmount);
+	double getBalance();
 
 	void credit(double amount) throws IllegalArgumentException;
 
+	void debit(double amount) throws IllegalArgumentException;
+
+	
 }
