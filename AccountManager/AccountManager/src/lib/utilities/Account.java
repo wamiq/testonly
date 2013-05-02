@@ -36,6 +36,10 @@ public class Account implements IAccount {
 		balance += amount;
 
 	}
+	
+	private void postToAudit(){
+		
+	}
 
 	@Override
 	public void debit(double amount) throws IllegalArgumentException {
