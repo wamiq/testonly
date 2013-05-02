@@ -52,9 +52,4 @@ public class Account implements IAccount {
 	private boolean isAccountLocked(){
 		return (false);
 	}
-
-	@SuppressWarnings("unused")
-	private void postToAudit(){
-		//TODO postToAuditImplementation
-	}
 }
