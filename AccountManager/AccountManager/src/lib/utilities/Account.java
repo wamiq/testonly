@@ -12,19 +12,24 @@ import lib.interfaces.IAccount;
 public class Account implements IAccount {
 
 	private static double balance = 0;
+	private static boolean accountLocked;
+
+	public Account() {
+		accountLocked = false;
+	}
 
 	@Override
 	public double getBalance() {
 
-		//return the balance of the account
+		// return the balance of the account
 		return balance;
-		
+
 	}
 
 	@Override
 	public void credit(double amount) throws IllegalArgumentException {
 
-		if (amount == 0 || amount < 0) {
+		if (amount == 0 || amount < 0 || accountLocked) {
 			throw new IllegalArgumentException(Double.toString(amount));
 		}
 
@@ -35,7 +40,7 @@ public class Account implements IAccount {
 	@Override
 	public void debit(double amount) throws IllegalArgumentException {
 
-		if (amount == 0 || amount < 0) {
+		if (amount == 0 || amount < 0 || accountLocked) {
 			throw new IllegalArgumentException(Double.toString(amount));
 		}
 
@@ -47,11 +52,16 @@ public class Account implements IAccount {
 		balance = 0;
 
 	}
-	
+
 	@SuppressWarnings("unused")
-	private boolean isAccountLocked(){
+	private boolean isAccountLocked() {
 		return (true);
-		
-		
+
+	}
+
+	@Override
+	public void Lock() {
+		accountLocked = true;
+
 	}
 }

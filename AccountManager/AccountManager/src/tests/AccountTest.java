@@ -99,4 +99,26 @@ public class AccountTest {
 		account.debit(0);
 
 	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testLockedAccountCredit(){
+		
+		IAccount account = new Account();
+		account.Lock();
+		account.credit(100);
+		
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testLockedAccountDebit(){
+		
+		IAccount account = new Account();
+		account.Lock();
+		account.debit(100);
+		
+		
+
+	}
+
+
 }
