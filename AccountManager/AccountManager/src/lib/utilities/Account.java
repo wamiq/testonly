@@ -12,10 +12,10 @@ import lib.interfaces.IAccount;
 public class Account implements IAccount {
 
 	private static double balance = 0;
-	private static boolean accountLocked;
+	private static boolean isAccountLocked;
 
 	public Account() {
-		accountLocked = false;
+		isAccountLocked = false;
 	}
 
 	@Override
@@ -29,7 +29,7 @@ public class Account implements IAccount {
 	@Override
 	public void credit(double amount) throws IllegalArgumentException {
 
-		if (amount == 0 || amount < 0 || accountLocked) {
+		if (amount == 0 || amount < 0 || isAccountLocked) {
 			throw new IllegalArgumentException(Double.toString(amount));
 		}
 
@@ -40,7 +40,7 @@ public class Account implements IAccount {
 	@Override
 	public void debit(double amount) throws IllegalArgumentException {
 
-		if (amount == 0 || amount < 0 || accountLocked) {
+		if (amount == 0 || amount < 0 || isAccountLocked) {
 			throw new IllegalArgumentException(Double.toString(amount));
 		}
 
@@ -53,26 +53,26 @@ public class Account implements IAccount {
 
 	}
 
-	@SuppressWarnings("unused")
-	public boolean isAccountLocked() {
-		return (true);
+	@Override
+	public void lock() throws IllegalStateException {
+		if (isAccountLocked == true)
+			throw new IllegalStateException("Account is not locked");
+
+		isAccountLocked = true;
 
 	}
 
 	@Override
-	public void Lock() {
-		accountLocked = true;
+	public void unlock() throws IllegalStateException {
+		if (isAccountLocked == false)
+			throw new IllegalStateException("Account is not locked");
 
-	}
-
-	@Override
-	public void unlock() {
-		accountLocked = false;
+		isAccountLocked = false;
 
 	}
 
 	@Override
 	public boolean getLockStatus() {
-		return (accountLocked);
+		return (isAccountLocked);
 	}
 }

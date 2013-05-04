@@ -5,35 +5,16 @@ package tests;
 
 import static org.junit.Assert.assertTrue;
 
-import java.util.Arrays;
-import java.util.Collection;
-
 import lib.interfaces.IAccount;
 import lib.utilities.Account;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 
 /**
  * @author Wamiq Bashir
  * 
  */
-//@RunWith(value = Parameterized.class)
 public class AccountTest {
-
-//	@SuppressWarnings("rawtypes")
-//	@Parameterized.Parameters
-//	public static Collection creditAmount() {
-//		return Arrays.asList(new Object[][] { { 2 }, { 6 }, { 19 }, { 22 },
-//				{ 23 } });
-//	}
-
-//	private double amount;
-//
-//	public AccountTest(double amount) {
-//		this.amount = amount;
-//	}
 
 	public void testResetAccountBalance() {
 		IAccount account = new Account();
@@ -68,77 +49,86 @@ public class AccountTest {
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void testNegativeArgumentsToCredit(){
-		
+	public void testNegativeArgumentsToCredit() {
+
 		IAccount account = new Account();
 		account.credit(-1);
 
 	}
-	
+
 	@Test(expected = IllegalArgumentException.class)
-	public void testZeroAsAnArgumentToCredit(){
-		
+	public void testZeroAsAnArgumentToCredit() {
+
 		IAccount account = new Account();
 		account.credit(0);
 
 	}
-	
-	
+
 	@Test(expected = IllegalArgumentException.class)
-	public void testNegativeArgumentsToDebit(){
-		
+	public void testNegativeArgumentsToDebit() {
+
 		IAccount account = new Account();
 		account.debit(-1);
 
 	}
-	
+
 	@Test(expected = IllegalArgumentException.class)
-	public void testZeroAsAnArgumentToDebit(){
-		
+	public void testZeroAsAnArgumentToDebit() {
+
 		IAccount account = new Account();
 		account.debit(0);
 
 	}
-	
+
 	@Test(expected = IllegalArgumentException.class)
-	public void testLockedAccountCredit(){
-		
+	public void testLockedAccountCredit() {
+
 		IAccount account = new Account();
-		account.Lock();
+		account.lock();
 		account.credit(100);
-		
-	}
-
-	@Test(expected = IllegalArgumentException.class)
-	public void testLockedAccountDebit(){
-		
-		IAccount account = new Account();
-		account.Lock();
-		account.debit(100);
-		
-		
 
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void testLockedAccountDebit2(){
-		
+	public void testLockedAccountDebit() {
+
 		IAccount account = new Account();
-		account.Lock();
+		account.lock();
 		account.debit(100);
-		
-		
 
 	}
 
-	
+
 	@Test
-	public void testUnlockAccount(){
+	public void testUnlockAccount() {
 		IAccount account = new Account();
+		account.lock();
 		account.unlock();
 		assertTrue(account.getLockStatus() == false);
+
+	}
+
+ 	@Test(expected = IllegalStateException.class)
+	public void testUnlockOperationOnAnUnLockedAccount() {
+		IAccount account = new Account();
+		account.unlock();
 		
-	
+	}
+
+ 	@Test
+	public void testLockAccount() {
+		IAccount account = new Account();
+		account.lock();
+		assertTrue(account.getLockStatus() == true);
+
+	}
+
+ 	@Test(expected = IllegalStateException.class)
+	public void testlockOperationOnALockedAccount() {
+		IAccount account = new Account();
+		account.lock();
+		account.lock();
+		
 	}
 
 }

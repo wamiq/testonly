@@ -17,9 +17,9 @@ public interface IAccount {
 
 	void debit(double amount) throws IllegalArgumentException;
 
-	void Lock() throws IllegalArgumentException;
+	void lock() throws IllegalArgumentException;
 
-	void unlock();
+	void unlock() throws IllegalStateException;
 
 	boolean getLockStatus();
 
