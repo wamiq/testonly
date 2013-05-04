@@ -120,5 +120,16 @@ public class AccountTest {
 
 	}
 
+	@Test(expected = IllegalArgumentException.class)
+	public void testLockedAccountDebit2(){
+		
+		IAccount account = new Account();
+		account.Lock();
+		account.debit(100);
+		
+		
+
+	}
+
 
 }
