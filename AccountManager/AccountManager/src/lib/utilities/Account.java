@@ -8,7 +8,7 @@ import lib.interfaces.IAccount;
 /**
  * @author Wamiq Bashir
  * 
- * added
+ * added new tests
  */
 public class Account implements IAccount {
 
