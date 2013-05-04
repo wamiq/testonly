@@ -19,21 +19,21 @@ import org.junit.runners.Parameterized;
  * @author Wamiq Bashir
  * 
  */
-@RunWith(value = Parameterized.class)
+//@RunWith(value = Parameterized.class)
 public class AccountTest {
 
-	@SuppressWarnings("rawtypes")
-	@Parameterized.Parameters
-	public static Collection creditAmount() {
-		return Arrays.asList(new Object[][] { { 2 }, { 6 }, { 19 }, { 22 },
-				{ 23 } });
-	}
+//	@SuppressWarnings("rawtypes")
+//	@Parameterized.Parameters
+//	public static Collection creditAmount() {
+//		return Arrays.asList(new Object[][] { { 2 }, { 6 }, { 19 }, { 22 },
+//				{ 23 } });
+//	}
 
-	private double amount;
-
-	public AccountTest(double amount) {
-		this.amount = amount;
-	}
+//	private double amount;
+//
+//	public AccountTest(double amount) {
+//		this.amount = amount;
+//	}
 
 	public void testResetAccountBalance() {
 		IAccount account = new Account();
@@ -48,11 +48,11 @@ public class AccountTest {
 		IAccount account = new Account();
 		double existingBalance = account.getBalance();
 
-		account.credit(amount);
+		account.credit(100);
 
 		double newBalance = account.getBalance();
 
-		assertTrue(newBalance == existingBalance + amount);
+		assertTrue(newBalance == existingBalance + 100);
 
 	}
 
@@ -60,10 +60,10 @@ public class AccountTest {
 		IAccount account = new Account();
 		double existingBalance = account.getBalance();
 
-		account.debit(amount);
+		account.debit(100);
 		double newBalance = account.getBalance();
 
-		assertTrue(newBalance == existingBalance - amount);
+		assertTrue(newBalance == existingBalance - 100);
 
 	}
 
@@ -131,5 +131,14 @@ public class AccountTest {
 
 	}
 
+	
+	@Test
+	public void testUnlockAccount(){
+		IAccount account = new Account();
+		account.unlock();
+		assertTrue(account.getLockStatus() == false);
+		
+	
+	}
 
 }

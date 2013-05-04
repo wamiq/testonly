@@ -54,7 +54,7 @@ public class Account implements IAccount {
 	}
 
 	@SuppressWarnings("unused")
-	private boolean isAccountLocked() {
+	public boolean isAccountLocked() {
 		return (true);
 
 	}
@@ -63,5 +63,16 @@ public class Account implements IAccount {
 	public void Lock() {
 		accountLocked = true;
 
+	}
+
+	@Override
+	public void unlock() {
+		accountLocked = false;
+
+	}
+
+	@Override
+	public boolean getLockStatus() {
+		return (accountLocked);
 	}
 }

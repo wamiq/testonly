@@ -19,6 +19,10 @@ public interface IAccount {
 
 	void Lock() throws IllegalArgumentException;
 
+	void unlock();
+
+	boolean getLockStatus();
+
 	
 	
 }
